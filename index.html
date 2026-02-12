@@ -1,66 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>One Question ❤️</title>
+<meta charset="UTF-8">
+<title>One Important Question ❤️</title>
 
-  <style>
-    body {
-      background: #ffe6eb;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      margin-top: 100px;
-    }
+<style>
+body {
+  background: linear-gradient(to right, #ffdde1, #ee9ca7);
+  text-align: center;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  margin-top: 100px;
+}
 
-    h1 {
-      font-size: 40px;
-      color: #d6336c;
-    }
+h1 {
+  font-size: 38px;
+  color: #fff;
+}
 
-    button {
-      font-size: 22px;
-      padding: 12px 25px;
-      margin: 20px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-    }
+button {
+  font-size: 22px;
+  padding: 12px 25px;
+  margin: 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
 
-    #yes {
-      background: #ff4d6d;
-      color: white;
-    }
+#yes {
+  background: #ff4d6d;
+  color: white;
+}
 
-    #no {
-      background: #adb5bd;
-      color: black;
-      position: absolute;
-    }
-  </style>
+#no {
+  background: #f1f1f1;
+  position: absolute;
+}
+
+#counter {
+  color: white;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  font-size: 20px;
+  animation: floatUp 5s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+</style>
 </head>
 
 <body>
 
-  <h1>Will you be my Valentine? 💖</h1>
+<h1>Hey <span id="herName">Muskuuuuuu</span> 💕<br>
+Will you be my Valentine? 😘</h1>
 
-  <button id="yes">YES 😍</button>
-  <button id="no">NO 🙄</button>
+<button id="yes">YES 😍</button>
+<button id="no">NO 🙄</button>
 
-  <script>
-    const noBtn = document.getElementById("no");
+<div id="counter">NO attempts: 0 😈</div>
 
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - 100);
-      const y = Math.random() * (window.innerHeight - 100);
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
 
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-    });
+<script>
+let noCount = 0;
+const noBtn = document.getElementById("no");
 
-    document.getElementById("yes").onclick = () => {
-      document.body.innerHTML = "<h1>Yayyy! 💕 See you on Valentine’s 😘</h1>";
-    };
-  </script>
+function moveButton() {
+  const x = Math.random() * (window.innerWidth - 150);
+  const y = Math.random() * (window.innerHeight - 150);
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+  noCount++;
+  document.getElementById("counter").innerText = 
+    "NO attempts: " + noCount + " 😈";
+}
+
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("click", moveButton);
+noBtn.addEventListener("touchstart", moveButton);
+
+document.getElementById("yes").onclick = function() {
+  document.body.innerHTML = `
+  <h1 style="color:white; margin-top:100px;">
+  YAYYYY ❤️🥹<br><br>
+  Our Date Plan:<br><br>
+  🍝 Ice Cream at your favourite place<br>
+  
+  <a href="https://https://share.google/9iGG1f7eQwUqZNjql" 
+style="color:white;" target="_blank">
+Click here for surprise location 😉
+</a>
+
+  </h1>
+  `;
+};
+
+/* Floating hearts generator */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 20 + 15 + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => { heart.remove(); }, 5000);
+}, 300);
+</script>
 
 </body>
 </html>
